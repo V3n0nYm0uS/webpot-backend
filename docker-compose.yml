@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   keycloak:
-    image: jboss/keycloak
+    image: quay.io/keycloak/keycloak:24.0.3
     container_name: keycloak
     ports:
       - "8080:8080"
@@ -16,7 +16,7 @@ services:
     restart: always
 
   mariadb:
-    image: mariadb
+    image: mariadb:latest
     container_name: mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
