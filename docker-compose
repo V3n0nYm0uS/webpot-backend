@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    container_name: keycloak
+    ports:
+      - "8080:8080"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    networks:
+      - keycloak-network
+    depends_on:
+      - mariadb
+    restart: always
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=keycloak
+      - MYSQL_USER=keycloak
+      - MYSQL_PASSWORD=keycloak_password
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - keycloak-network
+    restart: always
+
+networks:
+  keycloak-network:
+
+volumes:
+  mariadb_data:
