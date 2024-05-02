@@ -11,6 +11,9 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity(name="ingredient")
+@Table(name = "ingredient", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"label"}),
+})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,6 +22,8 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String label;
 
     @ManyToOne

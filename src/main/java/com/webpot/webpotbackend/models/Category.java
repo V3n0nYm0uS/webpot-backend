@@ -1,15 +1,16 @@
 package com.webpot.webpotbackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name="category")
+@Table(name = "category", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"label"}),
+    @UniqueConstraint(columnNames = {"color"})
+})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,5 +20,9 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String label;
+
+    @Column()
+    private String color;
 }

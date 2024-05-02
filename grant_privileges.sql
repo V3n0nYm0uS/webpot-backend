@@ -1,2 +1,0 @@
-GRANT ALL PRIVILEGES ON devwebavance.* TO 'root'@'%' IDENTIFIED BY 'Password123!';
-FLUSH PRIVILEGES;

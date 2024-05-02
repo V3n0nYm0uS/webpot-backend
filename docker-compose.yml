@@ -32,6 +32,3 @@ services:
 
 networks:
   keycloak-network:
-
-volumes:
-  mariadb_data:

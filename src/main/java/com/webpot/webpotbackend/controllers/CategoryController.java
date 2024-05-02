@@ -43,4 +43,20 @@ public class CategoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
+        if(id == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        try{
+            log.info("want to delete category " + id);
+            this.categoryService.removeCategory(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (DBException e){
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (NotFoundException e){
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -20,7 +20,7 @@ public class CategoryService {
         Category existing = null;
         if (category.getId() != null){
             existing = this.categoryRepository.findById(category.getId()).orElse(null);
-            if (existing == null) throw new NotFoundException(("Category not found"));
+            if (existing == null) throw new NotFoundException("Category not found");
         }
         try {
             Category categoryCreated = this.categoryRepository.save(category);
@@ -33,7 +33,7 @@ public class CategoryService {
     public void removeCategory(Long id) throws DBException, NotFoundException {
         Category existing = null;
         existing = this.categoryRepository.findById(id).orElse(null);
-        if(existing == null) throw new NotFoundException("Ingredient not found");
+        if(existing == null) throw new NotFoundException("Category not found");
         try {
             this.categoryRepository.delete(existing);
         } catch (Exception e){
