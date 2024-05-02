@@ -10,7 +10,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity(name="recipe")
-@Table(name="ingredient", uniqueConstraints = {
+@Table(name="recipe", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"name"}),
 })
 @AllArgsConstructor

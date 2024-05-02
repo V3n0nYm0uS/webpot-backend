@@ -17,6 +17,7 @@ import java.util.Set;
 @Table(name = "ingredient", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"label"}),
 })
+@JsonIgnoreProperties("recipeIngredients")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,4 +35,6 @@ public class Ingredient {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Category category;
 
+    @OneToMany(mappedBy = "ingredient")
+    private Set<RecipeIngredient> recipeIngredients;
 }
