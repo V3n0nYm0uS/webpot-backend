@@ -24,5 +24,5 @@ public class RecipeIngredient {
 
     @Column(nullable = false)
     @Positive(message = "Quantity must be positive")
-    private int quantity;
+    private Integer quantity;
 }
