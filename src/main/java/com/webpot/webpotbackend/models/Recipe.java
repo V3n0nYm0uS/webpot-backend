@@ -26,7 +26,7 @@ public class Recipe {
     private String name;
 
     @Column()
-    private Integer rate;
+    private Integer rating;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RecipeIngredient> recipeIngredients;
