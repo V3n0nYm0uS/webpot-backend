@@ -1,6 +1,7 @@
 package com.webpot.webpotbackend.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Table(name = "ingredient", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"label"}),
 })
+@JsonIgnoreProperties("recipeIngredients")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -31,10 +33,8 @@ public class Ingredient {
     @ManyToOne
     @JoinColumn(name="category_id", nullable=true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Category category;
 
     @OneToMany(mappedBy = "ingredient")
-    @JsonIgnore
     private Set<RecipeIngredient> recipeIngredients;
 }
