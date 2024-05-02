@@ -7,8 +7,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - ./keycloak_data:/opt/jboss/keycloak/standalone/data
+    command: ["start-dev"]
     networks:
       - keycloak-network
     depends_on:
@@ -16,15 +19,13 @@ services:
     restart: always
 
   mariadb:
-    image: mariadb:latest
+    image: bitnami/mariadb:latest
     container_name: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=root_password
-      - MYSQL_DATABASE=keycloak
-      - MYSQL_USER=keycloak
-      - MYSQL_PASSWORD=keycloak_password
-    volumes:
-      - mariadb_data:/var/lib/mysql
+      - MARIADB_ROOT_PASSWORD=Password123!
+      - MARIADB_DATABASE=webpot
+    ports:
+      - "3306:3306" # Expose MariaDB port 3306
     networks:
       - keycloak-network
     restart: always

@@ -1,0 +1,3 @@
+CREATE USER 'webpot'@'%' IDENTIFIED BY 'Password123!';
+GRANT ALL PRIVILEGES ON webpot.* TO 'webpot'@'%';
+FLUSH PRIVILEGES;
