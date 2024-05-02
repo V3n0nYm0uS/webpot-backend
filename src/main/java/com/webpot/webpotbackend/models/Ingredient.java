@@ -34,5 +34,4 @@ public class Ingredient {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Category category;
 
-
 }
