@@ -29,5 +29,6 @@ public class Recipe {
     private Integer rating;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JoinColumn(name="recipe")
     private Set<RecipeIngredient> recipeIngredients;
 }
