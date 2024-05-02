@@ -10,6 +10,8 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.Set;
+
 @Entity(name="ingredient")
 @Table(name = "ingredient", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"label"}),
@@ -31,4 +33,8 @@ public class Ingredient {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Category category;
+
+    @OneToMany(mappedBy = "ingredient")
+    @JsonIgnore
+    private Set<RecipeIngredient> recipeIngredients;
 }

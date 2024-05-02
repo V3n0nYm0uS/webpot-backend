@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity(name="recipe")
 @Table(name="ingredient", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"name"}),
@@ -23,5 +25,6 @@ public class Recipe {
     @Column(nullable = false)
     private String name;
 
-
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecipeIngredient> recipeIngredients;
 }
